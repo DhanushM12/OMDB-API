@@ -64,6 +64,21 @@ class App extends React.Component {
           {displayMovies.length === 0 ? (
             <div className="no-movies">No Movies to Display!</div>
           ) : null}
+
+          <div className="tabs">
+            <div
+              className={`tab ${showFavourites ? '' : 'active-tabs'}`}
+              onClick={() => this.onChangeTab(false)}
+            >
+              Previous
+            </div>
+            <div
+              className={`tab ${showFavourites ? 'active-tabs' : ''}`}
+              onClick={() => this.onChangeTab(true)}
+            >
+              Next
+            </div>
+          </div>
         </div>
       </div>
     );

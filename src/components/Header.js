@@ -28,6 +28,7 @@ class Header extends React.Component {
     const { result: movie, showSearchResults } = this.props.search; //rename result to movie
     return (
       <div className="nav">
+        <h1>OMDB Movie App</h1>
         <div className="search-container">
           <input onChange={this.handleChange} />
           <button id="search-btn" onClick={this.handleSearch}>

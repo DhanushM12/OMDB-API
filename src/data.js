@@ -337,7 +337,7 @@ export const data = [
     Website: 'N/A',
     Response: 'True',
   },
-  {
+  /*{
     Title: 'Thor: Ragnarok',
     Year: '2017',
     Rated: 'PG-13',
@@ -508,5 +508,5 @@ export const data = [
     Production: 'Warner Bros. Pictures',
     Website: 'N/A',
     Response: 'True',
-  },
+  },*/
 ];

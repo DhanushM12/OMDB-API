@@ -5,24 +5,30 @@ import MovieCard from './MovieCard';
 import { addMovies } from '../actions';
 class App extends React.Component {
   componentDidMount() {
+    const { store } = this.props;
+    store.subscribe(() => {
+      console.log('updated');
+      this.forceUpdate();
+    });
     //make api call
     //dispatch action
-    this.props.dispatch(addMovies(data));
-    // console.log('state', store.getState());
+    store.dispatch(addMovies(data));
+    console.log('state', store.getState());
   }
   render() {
-    const movies = this.props.store.getState();
-    //console.log('Render');
+    //const movies = this.props.store.getState();
+    const { list } = this.props.store.getState(); // {list:[], fav:[]}
+    // console.log('Render', this.props.store.getState());
     return (
       <div className="App">
-        <Navbar />
+        <Header />
         <div className="main">
           <div className="tabs">
             <div className="tab">Movies</div>
             <div className="tab">Favourites</div>
           </div>
           <div className="list">
-            {movies.map((movie, index) => (
+            {list.map((movie, index) => (
               <MovieCard movie={movie} key={`movies-${index}`} />
             ))}
           </div>

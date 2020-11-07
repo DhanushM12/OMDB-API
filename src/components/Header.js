@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { addMovieToList, handleMovieSearch } from '../actions';
 class Header extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Header extends React.Component {
     });
   };
   render() {
+    const { result: movie, showSearchResults } = this.props.search; //rename result to movie
     return (
       <div className="nav">
         <div className="search-container">
@@ -50,4 +52,10 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+function mapStateToProps({ search }) {
+  return {
+    search,
+  };
+}
+
+export default connect(mapStateToProps)(Header);

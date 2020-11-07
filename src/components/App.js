@@ -1,19 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { data } from '../data';
 import Header from './Header';
 import MovieCard from './MovieCard';
 import { addMovies, setShowFavourites } from '../actions';
 class App extends React.Component {
   componentDidMount() {
-    const { store } = this.props;
+    /*const { store } = this.props;
     store.subscribe(() => {
       console.log('updated');
       this.forceUpdate();
-    });
+    });*/
     //make api call
     //dispatch action
-    store.dispatch(addMovies(data));
-    console.log('state', store.getState());
+    this.props.dispatch(addMovies(data));
   }
   isMovieFavourite = (movie) => {
     const { movies } = this.props.store.getState();
@@ -35,7 +35,7 @@ class App extends React.Component {
     const displayMovies = showFavourites ? favourites : list;
     return (
       <div className="App">
-        <Header dispatch={this.props.store.dispatch} search={search} />
+        <Header search={search} />
         <div className="main">
           <div className="tabs">
             <div
@@ -69,5 +69,13 @@ class App extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    movies: state.movies,
+    search: state.search,
+  };
+}
 
-export default App;
+const connectedAppComponent = connect(mapStateToProps)(App);
+
+export default connectedAppComponent;

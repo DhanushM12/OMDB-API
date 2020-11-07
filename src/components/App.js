@@ -16,8 +16,8 @@ class App extends React.Component {
     console.log('state', store.getState());
   }
   isMovieFavourite = (movie) => {
-    const { favourites } = this.props.store.getState();
-    const index = favourites.indexOf(movie);
+    const { movies } = this.props.store.getState();
+    const index = movies.favourites.indexOf(movie);
     if (index !== -1) {
       //found movie
       return true;
@@ -28,8 +28,9 @@ class App extends React.Component {
     this.props.dispatch(setShowFavourites(val));
   };
   render() {
+    const { movies } = this.props.store.getState();
     //const movies = this.props.store.getState();
-    const { list, favourites, showFavourites } = this.props.store.getState(); // {list:[], fav:[]}
+    const { list, favourites, showFavourites } = movies; //{movies:{list:[], fav:[], show}, search{}}
     // console.log('Render', this.props.store.getState());
     const displayMovies = showFavourites ? favourites : list;
     return (
